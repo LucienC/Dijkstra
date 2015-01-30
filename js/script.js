@@ -165,16 +165,15 @@ function dijkstra(listArret,graph,depart,arrive){
 					trajet.push(poids[i][0]);
 					if(poids[i][3]!=''){
 						noeud = poids[i][3];
-					}else{
-						
 					}
 				}
 			}
 		}
+		trajet.push(depart);
 		return [trajet.reverse().join("->"),dist];
 	}
 
-	document.getElementById('trajet').innerHTML = 'Trajet le plus court pour aller de ' + depart + ' à ' + arrive +' : <span id="res"> ' + afficheTrajet(tabPoid,depart,arrive)[0] + " pour une distance totale : " +afficheTrajet(tabPoid,depart,arrive)[1] + " Km</span>";
+	document.getElementById('trajet').innerHTML = 'Trajet le plus court pour aller de ' + depart + ' à ' + arrive +' : <span id="res"> ' + afficheTrajet(tabPoid,depart,arrive)[0] + " pour une distance totale de : " +afficheTrajet(tabPoid,depart,arrive)[1] + " Km</span>";
 
 	var p = '';
 		p += '<table>';
