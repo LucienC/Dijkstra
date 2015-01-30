@@ -4,7 +4,7 @@ window.onload=function(){
 	 depart = depart.toUpperCase();
 	 arrive = arrive.toUpperCase();
       if (depart!=null && arrive!=null && depart.length == 1 && arrive.length == 1 && isNaN(depart) && isNaN(arrive)) {
-      	   _cn("img",{src:'./img/wiki.png', alt: "Schema du réseau"},{},_tn('body')[0]);
+      	   _cn("img",{src:'./img/wiki.png', alt: "Schema du réseau"},{},_tn('body')[0]);//Utlilisation de la bibliothèque MIW qui est mise à jour régulièrement
       	   _cn('div',{id:'matrice'},{},_tn('body')[0]);
       	   _cn('div',{id:'poid'},{},_tn('body')[0]);
       	   _cn('div',{id:'trajet'},{},_tn('body')[0]);
@@ -17,7 +17,9 @@ window.onload=function(){
 
 function init(dep,arr){
 	/*d=Arrêt de Départ a= Arrêt d'arrivé  l=Distance entre les deux arrêts 
-	Exemple d'un JSON qu'on pourrait récupérer depuis la base de données pour connaitre le trajet le plus court/rapide*/
+	Exemple d'un JSON qu'on pourrait récupérer depuis la base de données pour connaitre le trajet le plus court/rapide
+	Utilisation du jeu d'essai de la page wikipédia pour réaliser mes tests : http://fr.wikipedia.org/wiki/Algorithme_de_Dijkstra
+	*/
 
 	arrets = [{'d':'A','a':'B','l':85},
 			 {'d':'A','a':'C','l':217},
@@ -109,7 +111,7 @@ function dijkstra(listArret,graph,depart,arrive){
 	var tabPoid = createTabPoid(listArret);
 
 
-	//initialisation du point de départ, son poid sera égal à 0
+	//Initialisation du point de départ, son poids sera égal à 0
 	for(var e=0; e<tabPoid.length; e++){
 		if(tabPoid[e][0]== depart){
 			tabPoid[e][1] = 0;
@@ -117,7 +119,7 @@ function dijkstra(listArret,graph,depart,arrive){
 	}
 
 
-	//Fonction qui recherche le poid minimum non parcouru
+	//Fonction qui recherche le poids minimum non parcouru
 	function mini(tab){
 		var min = 10000;
 		for(var f = 0; f < tab.length; f++){
@@ -135,13 +137,13 @@ function dijkstra(listArret,graph,depart,arrive){
 	var ini = mini(tabPoid);
 
 	//Algorithme de Dijkstra
-	while( ini[1] != arrive){// Tant que l'arrêt avec le poid le plus faible n'est pas égal à l'arrêt d'arrivé
+	while( ini[1] != arrive){// Tant que l'arrêt avec le poids le plus faible n'est pas égal à l'arrêt d'arrivé
 				k=0;
 				while(k < arrets.length){
 					if(arrets[k].d == tabPoid[ini[0]][0] || arrets[k].a == tabPoid[ini[0]][0]){//Si l'arrêt au moins un fils
 						for(var j=0; j<tabPoid.length; j++){//Alors on parcours son ou ses fils
 							if((arrets[k].a == tabPoid[j][0] || arrets[k].d == tabPoid[j][0])  && tabPoid[j][2] == 0 && ((tabPoid[ini[0]][1]+arrets[k].l)<tabPoid[j][1] || tabPoid[j][1]==10000)){//Si le fils n'a pas déja été parcouru
-								tabPoid[j][1] = tabPoid[ini[0]][1] + arrets[k].l; //On change le poid du fils
+								tabPoid[j][1] = tabPoid[ini[0]][1] + arrets[k].l; //On change le poids du fils
 								tabPoid[j][3] = tabPoid[ini[0]][0];//On affecte l'antécédent au fils
 							}
 						}

@@ -1,6 +1,6 @@
 /*****************************************************************************************************************/
 /*                                                                                                               */
-/*                                Bibliothèque  MIW   version miw V 15 01 2015.js                                */
+/*                                Bibliothèque  MIW   version miw V 22 01 2015.js                                */
 /*                                Réalisée dans le cadre des cours Javascript                                    */
 /*                                De la Licence Activités et Techniques de Communication                         */
 /*                                Mention Multimédia Internet Webmaster   (MIW)                                  */
